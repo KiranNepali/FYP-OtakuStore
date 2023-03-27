@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'otakustore.wsgi.application'
+#account is our app name and Account is our model name, custom user 
+AUTH_USER_MODEL = 'accounts.Account' 
 
 
 # Database
