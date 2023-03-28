@@ -273,12 +273,18 @@ article:after,
 }
 
 
-.widget-header {
+.widget-header{
   display: flex;
-  text-align: center;
   justify-content: center;
+  align-items: center;
   vertical-align: middle;
   position: relative;
+}
+
+.account{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .widget-header a {
@@ -307,6 +313,7 @@ article:after,
 .widget-header:hover i {
   color: #F05454;
 }
+
 
 /* banner  */
 .banner{
