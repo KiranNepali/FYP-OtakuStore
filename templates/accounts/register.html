@@ -9,6 +9,7 @@
         <article class="card-body">
             <header class="mb-4">
                 <h4 class="card-title">Sign up</h4>
+                {% include 'includes/alerts.html' %}
             </header>
             <form action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
@@ -47,8 +48,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"> Register </button>
                 </div> <!-- form-group// -->    
-                {{ form.email.errors }}
-                {{ form.non_field_errors }}
+                
             </form>
             
         </article><!-- card-body.// -->

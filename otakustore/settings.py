@@ -84,6 +84,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -125,3 +126,12 @@ STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
     'otakustore/static',
 ]
+
+# for media files configuration 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR /'media'
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
