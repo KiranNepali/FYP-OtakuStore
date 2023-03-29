@@ -20,9 +20,12 @@
                             <li><a class="dropdown-item" href="#">Clothes</a></li>
                             <li><a class="dropdown-item" href="#">Acessories</a></li>
                             <li>
+                                {% comment %} <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li> {% endcomment %}
                         </ul>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Shop</a>
+                        <a href="#" class="nav-link">Shop</a>
                     </li>
                     </li>
                 </ul>
@@ -33,12 +36,21 @@
                         <i class="fa fa-search white"></i>
                     </button>
                 </form>
-                <div class ="d-flex account">
-                    <div class=" widget-header me-3 ms-5">
-                        <a href="{% url 'login' %}">SIGN IN</a>
-                        <span>/</span> 
+                <div class ="d-flex justify-content-end justify-content-center">
+                    {% if user.id is None %}
+                    <div class="widget-header me-3 ms-5">
+                        <a href="{% url 'login' %}">SIGN IN</a> 
+                        <span>/</span>
                         <a href="{% url 'register' %}">REGISTER</a>
                     </div>
+                    {% else %}
+                    <div class="widget-header me-3 ms-5">
+                        <a href="#">Dashboard</a> 
+                        <span>/</span>
+                        <a href="#">Logout</a>
+                    </div>
+
+                    {% endif %}
                     <a href="./cart.html" class="widget-header pl-3 ml-3">
                         <div class="icon icon-sm rounded-circle border text-secondary"><i class="fa fa-shopping-cart"></i>
                         </div>
