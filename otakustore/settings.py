@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ay46g%$qzb7msxaw&k14v(r)n)$%qqhu#q0-&$k4f6-iexim6f'
+SECRET_KEY = 'q$7p^4*@&fw2fzl)sooz&pcqpq4b*k_z!%f70+bm32$+&8r%dc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -69,6 +69,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'otakustore.wsgi.application'
+
 #account is our app name and Account is our model name, custom user 
 AUTH_USER_MODEL = 'accounts.Account' 
 
@@ -82,7 +83,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 
 # Password validation
@@ -135,3 +135,18 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+
+#SMTP configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'kirannepali9844@gmail.com'
+EMAIL_HOST_PASSWORD = 'ymadryvdlxsppkvx'
+EMAIL_USE_TLS = True
+
+
+
+
+
+
