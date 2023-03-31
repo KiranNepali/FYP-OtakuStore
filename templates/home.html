@@ -45,100 +45,36 @@
 	</section>
 	<!-- banner section ends  -->
 
+
 	<!-- popular products section  -->
 	<section class="popular-products">
 		<div class="container">
 			<header class="header-title d-flex pt-5 pb-2">
 				<h3 class="section-title">Popular products</h3>
 			</header><!-- sect-heading -->
-			<div class="row">
-				<div class="col-md-4 col-lg-3">
-					<div class="card card-product-grid">
-						<a href="" class="img-wrap"> <img src="{% static 'images/items/p1.jpg' %}"> </a>
-						<figcaption class="info-wrap">
-							<a href="./product-detail.html" class="title">Product name</a>
-							<div class="price mt-1">Rs. 179.00</div> <!-- price-wrap.// -->
-							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-						</figcaption>
-					</div>
-				</div> <!-- col.// -->
-				<div class="col-md-4 col-lg-3">
-					<div class="card card-product-grid">
-						<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/p2.jpg' %}"> </a>
-						<figcaption class="info-wrap">
-							<a href="./product-detail.html" class="title">Product name</a>
-							<div class="price mt-1">Rs. 280.00</div> <!-- price-wrap.// -->
-							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-						</figcaption>
-					</div>
-				</div> <!-- col.// -->
-				<div class="col-md-4 col-lg-3">
-					<div class="card card-product-grid">
-						<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/p3.jpg' %}"> </a>
-						<figcaption class="info-wrap">
-							<a href="./product-detail.html" class="title">Product name</a>
-							<div class="price mt-1">Rs. 56.00</div> <!-- price-wrap.// -->
-							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-						</figcaption>
-					</div>
-				</div> <!-- col.// -->
-				<div class="col-md-4 col-lg-3">
-					<div class="card card-product-grid">
-						<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/p4.jpg' %}"> </a>
-						<figcaption class="info-wrap">
-							<a href="./product-detail.html" class="title">Product name</a>
-							<div class="price mt-1">Rs. 179.00</div> <!-- price-wrap.// -->
-							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-						</figcaption>
-					</div>
-				</div> <!-- col.// -->
-				<div class="col-md-4 col-lg-3">
-					<div class="card card-product-grid">
-						<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/p5.jpg' %}"> </a>
-						<figcaption class="info-wrap">
-							<a href="./product-detail.html" class="title">Product name</a>
-							<div class="price mt-1">Rs. 179.00</div> <!-- price-wrap.// -->
-							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-						</figcaption>
-					</div>
-				</div> <!-- col.// -->
-				<div class="col-md-4 col-lg-3">
-					<div class="card card-product-grid">
-						<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/p6.jpg' %}"> </a>
-						<figcaption class="info-wrap">
-							<a href="./product-detail.html" class="title">Product name</a>
-							<div class="price mt-1">Rs. 280.00</div> <!-- price-wrap.// -->
-							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-						</figcaption>
-					</div>
-				</div> <!-- col.// -->
-				<div class="col-md-4 col-lg-3">
-					<div class="card card-product-grid">
-						<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/p7.jpg' %}"> </a>
-						<figcaption class="info-wrap">
-							<a href="./product-detail.html" class="title">Product name</a>
-							<div class="price mt-1">Rs. 56.00</div> <!-- price-wrap.// -->
-							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-						</figcaption>
-					</div>
-				</div> <!-- col.// -->
-				<div class="col-md-4 col-lg-3">
-					<div class="card card-product-grid">
-						<a href="./product-detail.html" class="img-wrap"> <img src="{% static 'images/items/p8.jpg' %}"> </a>
-						<figcaption class="info-wrap">
-							<a href="./product-detail.html" class="title">Product name</a>
-							<div class="price mt-1">Rs. 179.00</div> <!-- price-wrap.// -->
-							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-						</figcaption>
-						
-					</div>
-				</div> <!-- col.// -->
-			</div> <!-- row.// -->
 
-		</div><!-- container // -->
+
+			<div class="row">
+				{% for product in products %}
+				<div class="col-md-4 col-lg-3">
+					<div class="card card-product-grid">
+						<a href="3" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
+						<figcaption class="info-wrap">
+							<a href="#" class="title">{{ product.product_name }}</a>
+							<div class="price mt-1">Rs.{{ product.price }}</div> <!-- price-wrap.// -->
+							<a href="#" class="btn btn-block btn-primary">Add to cart </a>
+						</figcaption>
+					</div>
+				</div> 
+				{% endfor %}
+		</div>
+
+		</div>
 	</section>
 	<!-- popular products section  ends  -->
 
 	
 {% endblock content %}
 <!--main content end-->
+
+
