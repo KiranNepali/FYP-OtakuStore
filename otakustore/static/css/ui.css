@@ -443,6 +443,8 @@ a[class*=card]:hover .title {
   margin-bottom: 0;
 }
 
+
+
 /* button */
 .btn{
   font-size: small;
@@ -457,7 +459,16 @@ a[class*=card]:hover .title {
 }
 
 
+
+
 /* shop section  */
+.card-product-grid .btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popula
 .shop-product .card .btn{
   margin-top: 2px;
 }
