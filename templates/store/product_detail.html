@@ -24,7 +24,7 @@
 
                         <p>{{ single_product.description }}</p>
                         <hr />
-                        <a href="./product-detail.html" class="btn btn-primary">
+                        <a href="{% url 'add_cart' single_product.id %}" class="btn btn-primary">
                             <span class="text">Add to cart</span>
                             <i class="fas fa-shopping-cart"></i>
                         </a>
