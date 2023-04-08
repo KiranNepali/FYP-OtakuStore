@@ -67,6 +67,8 @@ def remove_cart_item(request, product_id):
 
 
 
+
+
 #cart
 def cart(request, total=0, quantity=0, cart_items=None):
     try:
