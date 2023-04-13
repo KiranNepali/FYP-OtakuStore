@@ -93,10 +93,7 @@
               </dl>
               <hr>
               <div class="text-center">
-                   {% comment %} <p class="text-center mb-3">
-                <img src="./images/misc/payments.png" height="26" />
-              </p> {% endcomment %}
-              <a href="#" class="btn btn-primary px-5 mb-2">Checkout</a>
+              <a href="{% url 'checkout' %}" class="btn btn-primary px-5 mb-2">Checkout</a>
               <a href="{% url 'store' %}" class="btn btn-light">Continue Shopping</a>
               </div>
             </div>

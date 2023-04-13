@@ -27,9 +27,9 @@
                     </li>
                     </li>
                 </ul>
-                <form class="d-flex justify-content-center align-item-center me-5" role="search">
+                <form action="{% url 'search' %}" class="d-flex justify-content-center align-item-center me-5 search"  >
                     <input class="form-control search-bar  rounded-start-5 rounded-end-0" style="width:100%;"
-                        type="search" placeholder="Search" aria-label="Search">
+                        type="text" placeholder="Search" name="keyword">
                     <button class="btn rounded-0 px-4" type="submit">
                         <i class="fa fa-search white"></i>
                     </button>

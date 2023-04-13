@@ -3,6 +3,7 @@ from .models import Product
 from category.models import  Category
 from carts.models import CartItem
 from carts.views import  _cart_id
+from django .http import HttpResponse
 
 
 # Create your views here.
@@ -39,3 +40,19 @@ def product_detail(request, category_slug, product_slug):
         'in_cart' : in_cart,
     }
     return render(request, 'store/product_detail.html', context)
+
+
+
+
+#for search
+
+def search(request):
+    if 'keyword'  in request.GET:
+        keyword =  request.GET['keyword']
+        if keyword:
+            products = Product.objects.order_by('-created_date').filter(description__icontains = keyword, product_name__icontains=keyword)
+    context = {
+            'products' : products,
+        }
+   
+    return render(request, 'store/store.html', context)

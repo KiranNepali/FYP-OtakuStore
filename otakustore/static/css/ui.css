@@ -231,6 +231,7 @@ article:after,
   letter-spacing: 0.4rem;
   text-transform: uppercase;
   font-weight: 600;
+  margin-top: 5rem;
 }
 
 .title-text {
@@ -247,6 +248,7 @@ article:after,
 .text-lg {
   font-size: 1.3rem;
 }
+
 
 
 /* ==================  title helpers ================ */

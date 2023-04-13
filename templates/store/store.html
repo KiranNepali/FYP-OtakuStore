@@ -6,8 +6,13 @@
 
 
 
-<header class="header-title pt-5 ">
+<header class="header-title pt-5">
+    {% if 'search' in request.path %}
+    <h3 class="section-title container text-center">Search Result</h3>
+    {% else %}
     <h3 class="section-title container text-center">Shop</h3>
+    {% endif %}
+    
 </header><!-- sect-heading -->
 
 <!-- ========================= SECTION CONTENT ========================= -->
