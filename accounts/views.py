@@ -15,7 +15,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 
-#for cart
+# for cart
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
 
@@ -53,7 +53,7 @@ def register(request):
             send_email.send()
 
             # messages.success(request, 'Registration completed. Plz check your email for verification')
-            return redirect('/accounts/login/?command=verification&email='+ email)
+            return redirect('/accounts/login/?command=verification&email=' + email)
 
     else:
         form = RegistrationForm()
@@ -63,8 +63,7 @@ def register(request):
     return render(request, 'accounts/register.html', context)
 
 
-
-#login
+# login
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -74,27 +73,32 @@ def login(request):
 
         if user is not None:
             try:
-                cart = Cart.objects.get(cart_id=_cart_id(request)) #fetch the cart id form the browser
-                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
-                if  is_cart_item_exists:
-                    cart_item = CartItem.objects.filter(cart=cart) #give all the cart item assign in cart id
-                    
-                    #getting prodcut variation by cart id    
+                # fetch the cart id form the browser
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                is_cart_item_exists = CartItem.objects.filter(
+                    cart=cart).exists()
+                if is_cart_item_exists:
+                    # give all the cart item assign in cart id
+                    cart_item = CartItem.objects.filter(cart=cart)
+
+                    # getting prodcut variation by cart id
                     product_variation = []
                     for item in cart_item:
                         variation = item.variations.all()
-                        product_variation.append(list(variation)) #list to convert query set
+                        # list to convert query set
+                        product_variation.append(list(variation))
 
-                    #get the cart items for mthe user to access  his prodcut varitaion
-                    cart_item = CartItem.objects.filter( user=user) #filter the cart itmes
+                    # get the cart items for mthe user to access  his prodcut varitaion
+                    cart_item = CartItem.objects.filter(
+                        user=user)  # filter the cart itmes
 
-                    # check if the current_variation is inside the existing_variation then increasing the qunatity of carat_item 
-                    ex_var_list = [] #empty list #getting existin var list
-                    id  = [] #id  of particular cart item
+                    # check if the current_variation is inside the existing_variation then increasing the qunatity of carat_item
+                    ex_var_list = []  # empty list #getting existin var list
+                    id = []  # id  of particular cart item
                     for item in cart_item:
                         existing_variation = item.variations.all()
                         ex_var_list.append(list(existing_variation))
-                        id.append(item.id) 
+                        id.append(item.id)
 
                     # product_variation = [1,2,3,4,5,6]
                     # ex_var_list = [4,6,3,5]
@@ -102,31 +106,30 @@ def login(request):
                         if pr in ex_var_list:
                             index = ex_var_list.index(pr)
                             item_id = id[index]
-                            item = CartItem.objects.get(id = item_id)
+                            item = CartItem.objects.get(id=item_id)
                             item.quantity += 1
                             item.user = user
                             item.save()
                         else:
-                            cart_item =  CartItem.objects.filter(cart=cart)
+                            cart_item = CartItem.objects.filter(cart=cart)
                             for item in cart_item:
                                 item.user = user
                                 item.save()
             except:
-                  pass
-            
-
+                pass
 
             auth.login(request, user)
             messages.success(request, 'You are logged in.')
-            url = request.META.get('HTTP_REFERER') #grab the previous url from where we came
+            # grab the previous url from where we came
+            url = request.META.get('HTTP_REFERER')
             try:
                 query = requests.utils.urlparse(url).query
                 print('query ->', query)
-                #next = /cart/ccheckout/
+                # next = /cart/ccheckout/
                 params = dict(x.split('=')for x in query.split('&'))
                 if 'next' in params:
                     nextPage = params['next']
-                return redirect(nextPage) 
+                return redirect(nextPage)
             except:
                 return redirect('home')
         else:
@@ -143,17 +146,14 @@ def logout(request):
     return redirect('login')
 
 
-
-
-
 def activate(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
         user = Account._default_manager.get(pk=uid)
 
-    except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
-        user  = None
-    
+    except (TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
@@ -162,3 +162,7 @@ def activate(request, uidb64, token):
     else:
         messages.error(request, 'Invalid activation link!')
         return redirect('register')
+
+
+def dashboard(request):
+    return render(request, 'accounts/dashboard.html')
