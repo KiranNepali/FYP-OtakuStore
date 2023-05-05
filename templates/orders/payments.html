@@ -83,7 +83,9 @@
     </div> <!-- container .// -->
   </section>
   <script>
-    var amount =  {{ grand_total }}
+    var amount = '{{ grand_total }}'
+    var orderID = '{{ order_number }}'
+    var status = 'completed'
     var config = {
       // replace the publicKey with yours
       publicKey: 'test_public_key_26140e164f234b32915796559e1a057e',
@@ -98,12 +100,15 @@
               params: {
                 token: payload.token,
                 amount: payload.amount,
+                orderID: orderID,
+                status: status
               }
             })
             .then(function (resp) {
-              alert('Payment successful!'); 
-              console.log(resp.data);
-            });
+              window.location.href = "{% url 'order_complete' %}"
+              console.log(resp.data)
+              console.log(resp.data.payment)
+            })
           console.log(payload)
         },
         onError(error) {
@@ -119,7 +124,7 @@
     var btn = document.getElementById('payment-button')
     btn.onclick = function () {
       // minimum transaction amount must be 10, i.e 1000 in paisa.
-      checkout.show({ amount: amount})
+      checkout.show({ amount: amount })
     }
   </script>
   <!-- Paste this code anywhere in you body tag -->

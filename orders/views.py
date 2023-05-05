@@ -3,12 +3,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 
 from carts.models import CartItem
-from .models import Order, Payment
+from .models import Order, Payment, OrderProduct
 from .forms import OrderForm
 import requests
 
 import json
 from django.db.models import Q
+
+import datetime
 
 
 # Create your views here.
@@ -46,13 +48,26 @@ def place_order(request, total=0, quantity=0,):
             data.order_total = grand_total
             data.tax = tax
             data.save()
+
+            # GENERATE ORDER NUMBER
+            yr = int(datetime.date.today().strftime('%Y'))
+            dt = int(datetime.date.today().strftime('%d'))
+            mt = int(datetime.date.today().strftime('%m'))
+            d = datetime.date(yr, dt, mt)
+            current_date = d.strftime("%Y%m%d")
+            order_number = current_date + str(data.id)
+            data.order_number = order_number
+            data.save()
+
         context = {
             'total': total,
             'quantity': quantity,
             'cart_items': cart_items,
             'grand_total': grand_total,
             'tax': tax,
+            'order_number': order_number,
         }
+
         return render(request, 'orders/payments.html', context)
 
     else:
@@ -60,24 +75,28 @@ def place_order(request, total=0, quantity=0,):
 
 
 def payments(request):
+    # getting the payment data of customer
     payment_method = "khalti"
     token = request.GET.get("token")
     amount = request.GET.get("amount")
-    print(token, amount)
+    orderID = request.GET.get("orderID")
+    status = request.GET.get("status")
+    # to check
+    print(token, amount, orderID, status)
 
-    # for Verifying :
+    order = Order.objects.get(
+        user=request.user, is_ordered=False, order_number=orderID
+    )
 
+    # for Verifying khalti:
     url = "https://khalti.com/api/v2/payment/verify/"
-
     payload = {
         'token': token,
-        'amount': amount
+        'amount': amount,
     }
-
     headers = {
         'Authorization': 'Key test_secret_key_e614eb3b75e74acd911656189794d093'
     }
-
     response = requests.request("POST", url, headers=headers, data=payload)
     resp_dict = response.json()
     print(resp_dict)
@@ -85,12 +104,47 @@ def payments(request):
         "success": True
     }
 
+    # store transaction detail on payment module
     payment = Payment(
         payment_id=token,
         user=request.user,
         amount_paid=amount,
         payment_method=payment_method,
+        status=status,
     )
     payment.save()
 
+    # payment success then order is_ordered is checked
+    order.payment = payment
+    order.is_ordered = True
+    order.save()
+
+    # mover the cart items to order prodcut table
+    cart_items = CartItem.objects.filter(user=request.user)
+    for item in cart_items:
+        orderproduct = OrderProduct()
+        orderproduct.order_id = order.id
+        orderproduct.payment = payment
+        orderproduct.user_id = request.user.id
+        orderproduct.product_id = item.product_id
+        orderproduct.quantity = item.quantity
+        orderproduct.product_price = item.product.price
+        orderproduct.is_ordered = True
+        orderproduct.save()
+
+        # get the variation
+        cart_item = CartItem.objects.get(id=item.id)
+        product_variation = cart_item.variations.all()
+        orderproduct = OrderProduct.objects.get(id=orderproduct.id)
+        orderproduct.variations.set(product_variation)
+        orderproduct.save()
+
+    # cartitem delete after orderprodcut complete
+    CartItem.objects.filter(user=request.user).delete()
+
     return JsonResponse(data)
+
+
+def order_complete(request):
+
+    return render(request, "orders/order_complete.html")
