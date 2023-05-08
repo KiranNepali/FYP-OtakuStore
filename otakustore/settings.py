@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,7 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'category.context_processors.menu_links', 
+                'category.context_processors.menu_links',
                 'carts.context_processors.counter',
             ],
         },
@@ -76,8 +78,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'otakustore.wsgi.application'
 
-#account is our app name and Account is our model name, custom user 
-AUTH_USER_MODEL = 'accounts.Account' 
+# account is our app name and Account is our model name, custom user
+AUTH_USER_MODEL = 'accounts.Account'
 
 
 # Database
@@ -128,35 +130,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR /'static'
+STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     'otakustore/static',
 ]
 
-# for media files configuration 
+# for media files configuration
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
-#for django alert message
-from django.contrib.messages import constants as messages
+# for django alert message
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
 
-#SMTP configuration
+# SMTP configuration
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
 EMAIL_HOST_USER = 'kirannepali9844@gmail.com'
 EMAIL_HOST_PASSWORD = 'bvudvusjbquewfob'
 EMAIL_USE_TLS = True
-SERVER_EMAIL='kirannepali9844@gmail.com'
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-
-
-
-
-
-
+SERVER_EMAIL = 'kirannepali9844@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

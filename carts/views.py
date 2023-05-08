@@ -4,6 +4,7 @@ from . models import Cart, CartItem
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from orders.forms import OrderForm
 
 
 # Create your views here.
@@ -238,11 +239,17 @@ def checkout(request, total=0, quantity=0, cart_items=None):
     except ObjectDoesNotExist:
         pass  # just ignore
 
+ # create an instance of the order form and set the initial value of the email field
+    form = OrderForm(initial={'email': request.user.email}
+                     if request.user.is_authenticated else None)
+
     context = {
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
         'grand_total': grand_total,
         'tax': tax,
+        'form': form,
     }
+
     return render(request, 'store/checkout.html', context)

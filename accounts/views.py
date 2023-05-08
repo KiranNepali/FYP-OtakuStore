@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
-from .forms import RegistrationForm
-from .models import Account
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import RegistrationForm, UserForm, UserProfileForm
+from .models import Account, UserProfile
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -101,8 +101,6 @@ def login(request):
                         ex_var_list.append(list(existing_variation))
                         id.append(item.id)
 
-                    # product_variation = [1,2,3,4,5,6]
-                    # ex_var_list = [4,6,3,5]
                     for pr in product_variation:
                         if pr in ex_var_list:
                             index = ex_var_list.index(pr)
@@ -185,4 +183,48 @@ def my_orders(request):
 
 
 def edit_profile(request):
-    return render(request, 'accounts/edit_profile.html')
+    userprofile = get_object_or_404(UserProfile, user=request.user)
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, instance=userprofile)
+
+        if user_form.is_valid and profile_form.is_valid:
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "Your profile has beed updated")
+            return redirect('edit_profile')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = UserProfileForm(instance=userprofile)
+    context = {
+        "user_form": user_form,
+        "profile_form": profile_form,
+    }
+
+    return render(request, 'accounts/edit_profile.html', context)
+
+
+@login_required(login_url="login")
+def change_password(request):
+    if request.method == "POST":
+        current_password = request.POST["current_password"]
+        new_password = request.POST["new_password"]
+        confirm_password = request.POST["confirm_password"]
+
+        user = Account.objects.get(
+            username__exact=request.user.username)
+
+        if new_password == confirm_password:
+            success = user.check_password(current_password)
+            if success:
+                user.set_password(new_password)
+                user.save()
+
+                messages.success(request, "Password successfully changed")
+            else:
+                messages.error(request, "Invalid")
+                return redirect("change_password")
+        else:
+            messages.error(request, "Password not matching")
+            return redirect('change_password')
+    return render(request, "accounts/change_password.html")

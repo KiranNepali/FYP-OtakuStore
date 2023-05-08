@@ -11,12 +11,14 @@
             <a class="list-group-item" href={% url 'dashboard' %}>Dashboard</a>
             <a class="list-group-item" href={% url 'my_orders' %}>My orders</a>
             <a class="list-group-item" href={% url 'edit_profile' %}>Edit profile</a>
+            <a class="list-group-item" href={% url 'change_password' %}>Change_password</a>
           </ul>
           <br />
           <a class="btn btn-light btn-block" href={% url 'logout' %}><i class="fa fa-power-off"></i> <span class="text">Log out</span></a>
           <!-- SIDEBAR .//END -->
         </aside>
         <main class="col-md-9">
+          {% include "includes/alerts.html" %}
           <article class="card">
             
             <header class="card-header">
@@ -28,34 +30,30 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="">First Name</label>
-                        <input class="form-control" type="text" name="" id="">
+                        {{ user_form.first_name }}
                     </div>
                     <div class="form-group col-md-6">
                         <label for="">Last Name</label>
-                        <input  class="form-control" type="text" name="" id="">
+                        {{ user_form.last_name }}
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="">Phone Number</label>
-                        <input class="form-control" type="text" name="" id="">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="">Email</label>
-                        <input  class="form-control" type="text" name="" id="">
+                        {{ user_form.phone_number }}
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="">City</label>
-                        <input class="form-control" type="text" name="" id="">
+                        {{ profile_form.city }}
                     </div>
                     <div class="form-group col-md-6">
                         <label for="">Address</label>
-                        <input  class="form-control" type="text" name="" id="">
+                        {{ profile_form.address }}
                     </div>
                 </div>
-                <input class="btn mt-2"  value="Save">
+                <input type="submit" class="btn mt-2"  value="Save">
 
             </form>
 

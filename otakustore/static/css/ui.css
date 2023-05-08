@@ -450,7 +450,24 @@ a[class*="card"]:hover .title {
   transition: 0.5s;
   background-color: #f05454;
 }
-
+.btn-minus,
+.btn-plus {
+  border-radius: 0%;
+  height: 2.1rem;
+  text-overflow: 0%;
+}
+.btn-minus {
+  border-top-left-radius: 5px;
+  border-end-start-radius: 5px;
+}
+.btn-plus {
+  border-top-right-radius: 5px;
+  border-end-end-radius: 5px;
+}
+.btn-order {
+  padding-left: 16.2rem;
+  padding-right: 16.2rem;
+}
 /* shop section  */
 .card-product-grid .btn {
   display: flex;

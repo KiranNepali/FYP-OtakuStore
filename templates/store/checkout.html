@@ -26,9 +26,9 @@
                                 <input type="text" name="phone" class="form-control" required>
                             </div>
                             <div class="form-group">
-                              <label for="">Email</label>
-                              <input type="email" class="form-control mb-3"  name="email"  />
-                            </div>
+                              <label for="{{ form.email.id_for_label }}">Email</label>
+                              <input type="email" class="form-control mb-3"  name="{{ form.email.name }}" id="{{ form.email.id_for_label }}"
+                                {% if form.email.value %}value="{{ form.email.value }}"{% endif %} placeholder="{{ form.email.label }}">
                             <div class="col form-group">
                                 <label for="">City</label>
                                 <input type="text" name="city" class="form-control" required>
@@ -96,7 +96,7 @@
                         </tbody>
                         </table>  
                     <div class="text-center">
-                    <button  class="btn btn-primary px-5 mb-2 d-block">Order</button>
+                    <button  class="btn btn-order  mb-2 ">Order</button>
                     <a href="{% url 'store' %}" class="btn btn-light d-block">Continue Shopping</a>
                     </div>
             </div>
