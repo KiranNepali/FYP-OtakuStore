@@ -12,10 +12,29 @@ a:hover {
   color: #f05454;
 }
 
-/* ========================
-INCLUDE STYLES AND COMPONENTS
-===================== */
-/* ================== HELPERS  =================== */
+.services .title {
+  font-family: Poppins;
+  color: #30475e;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: large;
+  padding: 0.3rem;
+}
+.services .fa:hover {
+  transform: scale(1.5);
+  transition: transform 0.2s ease;
+}
+.services p {
+  color: #858585;
+}
+.services .card {
+  border: none;
+}
+.services .card:hover {
+  box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+  transition: 0.3s;
+}
 
 .img-wrap {
   text-align: center;
@@ -40,7 +59,6 @@ INCLUDE STYLES AND COMPONENTS
   padding: 2rem 2.3rem;
 }
 
-/* =================  DEFINED VARIABLES =================== */
 .icon-xs,
 .icon-sm,
 .icon-md,
@@ -164,7 +182,6 @@ INCLUDE STYLES AND COMPONENTS
   transform: scaleX(1);
 }
 
-/* ============== spacing ============== */
 .padding-y {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -225,7 +242,7 @@ article:after,
   letter-spacing: 0.4rem;
   text-transform: uppercase;
   font-weight: 600;
-  margin-top: 5rem;
+  margin-top: 1rem;
 }
 
 .title-text {
@@ -247,10 +264,6 @@ article:after,
   margin-top: 10rem;
 }
 
-/* ==================  title helpers ================ */
-
-/* ================== SECTIONS =================== */
-/* ================== header main ==================  */
 .navbar {
   background-color: #f5f5f5;
 }
@@ -504,4 +517,11 @@ a[class*="card"]:hover .title {
 .page-link:hover {
   background-color: #ef7272;
   color: white;
+}
+
+/* services icons */
+
+.services-icon {
+  font-size: 28px;
+  color: #eb3131;
 }

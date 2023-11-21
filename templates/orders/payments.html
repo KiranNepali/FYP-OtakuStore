@@ -9,7 +9,10 @@
           <div class="card">
             <div class="card-header font-weight-bold">Billing Address</div>
             <div class="card-body border-botttom">
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text mb-0">{{ order.first_name }} {{ order.last_name }}</p>
+              <p class="card-text mb-0">{{ order.phone }}</p>
+              <p class="card-text mb-0">{{ order.city }}</p>
+              <p class="card-text mb-0">{{ order.address }}</p>
             </div>
             <div class="card-header font-weight-bold">Payment Method</div>
             <div class="card-body border-botttom">
@@ -17,7 +20,6 @@
             </div>
             <div class="card-header font-weight-bold">Review Products</div>
             <div class="card-body border-botttom">
-              {% comment %} <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> {% endcomment %}
               <table class="table table-borderless table-shopping-cart">
                 <thead class="text-muted">
                   <tr class="small text-uppercase">

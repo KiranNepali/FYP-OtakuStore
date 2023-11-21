@@ -146,7 +146,7 @@ MESSAGE_TAGS = {
 }
 
 
-# SMTP configuration
+# SMTP configuration sending the mail in django project
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 

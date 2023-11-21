@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <!-- ========================= SECTION CONTENT ========================= -->
+
   <section class="dashboard section-content">
     <div class="container">
       <div class="row">
@@ -15,7 +15,7 @@
           </ul>
           <br />
           <a class="btn btn-light btn-block" href={% url 'logout' %}><i class="fa fa-power-off"></i> <span class="text">Log out</span></a>
-          <!-- SIDEBAR .//END -->
+          <!-- SIDEBAR end -->
         </aside>
         <main class="col-md-9">
           <article class="card">
@@ -51,10 +51,10 @@
                   </table>
             </div>
 
-          </article> <!-- order-group.// -->
+          </article>
         </main>
-      </div> <!-- row.// -->
+      </div> 
     </div>
   </section>
-  <!-- ========================= SECTION CONTENT END// ========================= -->
+
 {% endblock %}

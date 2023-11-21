@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 
-<!--main content start-->
 {% block content %}
-
 	<!-- banner section  -->
 	<section id="banner">
 		<div id="carouselExampleCaptions" class="carousel slide banner" data-bs-ride="false">
@@ -46,6 +43,51 @@
 	<!-- banner section ends  -->
 
 
+	<!-- services section -->
+	<section class="container services mt-4 " id="services">
+		<header class="header-title d-flex  pb-2">
+			<h3 class="section-title">SERVICES</h3>
+		</header>
+		<div class="container text-center">
+		  <div class="row">
+			<div class="col-md-4 ">
+				<div class="card">
+					<div class="service h-100 border p-4 rounded">	
+						<i class="fa fa-clock services-icon"></i>
+						<h3 class="title">24/7</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+					  </div>
+				</div>
+			</div>
+			<div class="col-md-4 ">
+				<div class="card">
+					<div class="service h-100 border p-4 rounded">	
+						<i class="fa fa-check-circle services-icon"></i>
+						<h3 class="title">BEST QUALITY</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+					  </div>
+				</div>
+			</div>
+			<div class="col-md-4 ">
+				<div class="card">
+					<div class="service h-100 border p-4 rounded">	
+						<i class="fa fa-truck services-icon"></i>
+						<h3 class="title">FAST DELIVERY</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+					  </div>
+				</div>
+			</div>
+			</div>
+		  </div>
+		</div>
+	  </section>
+	  <!-- services section ends -->
+
+
+
+	  
+
+
 	<!-- popular products section  -->
 	<section class="popular-products">
 		<div class="container">
@@ -73,6 +115,5 @@
 	</section>
 	<!-- popular products section  ends  -->
 
-	
+
 {% endblock content %}
-<!--main content end-->

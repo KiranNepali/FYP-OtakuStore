@@ -4,14 +4,16 @@
 
 <section class="cart section-content padding-y">
     <div class="container px-5">
-      <!-- ============================ COMPONENT 1 ================================= -->
-  {% if not cart_items %}
-       <h2 class="text-center">Your shopping cart is empty</h2>
-       <br>
-       <div class="text-center">
-         <a href="{% url 'store' %}" class="btn btn-primary">Continue Shopping</a>
-       </div>
-  {% else %}
+
+    <!--condition if there is no cart items-->
+    {% if not cart_items %}
+        <h2 class="text-center">Your shopping cart is empty</h2>
+        <br>
+        <div class="text-center">
+          <a href="{% url 'store' %}" class="btn btn-primary">Continue Shopping</a>
+        </div>
+    {% else %}
+    <!--condition if there is cart items ends-->
       <div class="row">
         <aside class="col-lg-9">
           <div class="card px-3">
@@ -25,7 +27,6 @@
                 </tr>
               </thead>
               <tbody>
-
 
                {% for cart_item in cart_items  %}  
                <tr class="border-top">
@@ -47,7 +48,7 @@
                   </figure>
                 </td>
                 <td>
-                  <!-- col.// -->
+
                   <div class="col">
                     <div class="input-group input-spinner">
                       <div class="input-group-prepend">
@@ -66,14 +67,14 @@
                         </form>
                         
                       </div>
-                    </div> <!-- input-group.// -->
-                  </div> <!-- col.// -->
+                    </div> 
+                  </div>
                 </td>
                 <td>
                   <div class="price-wrap">
                     <var class="price d-block">Rs.{{ cart_item.sub_total }}</var>
                     <small class="text-muted">{{ cart_item.product.price }}</small>
-                  </div> <!-- price-wrap .// -->
+                  </div>
                 </td>
                 <td class="text-right">
                   <a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id%}" class="btn btn-danger">Remove</a>
@@ -81,12 +82,11 @@
               </tr>
               {% endfor %}
                
-
             </tbody>
             </table>
             
-          </div> <!-- card.// -->
-        </aside> <!-- col.// -->
+          </div> 
+        </aside> 
         <aside class="col-lg-3">
           <div class="card">
             <div class="card-body">
@@ -113,7 +113,7 @@
       </div> 
       {% endif %}
    
-    </div> <!-- container .// -->
+    </div> 
   </section>
 
 {% endblock %}

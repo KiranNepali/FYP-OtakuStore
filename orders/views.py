@@ -48,18 +48,30 @@ def place_order(request, total=0, quantity=0,):
             data.order_total = grand_total
             data.tax = tax
             data.save()
-
             # GENERATE ORDER NUMBER
-            yr = int(datetime.date.today().strftime('%Y'))
-            dt = int(datetime.date.today().strftime('%d'))
-            mt = int(datetime.date.today().strftime('%m'))
-            d = datetime.date(yr, dt, mt)
-            current_date = d.strftime("%Y%m%d")
+            today = datetime.date.today()
+            yr = today.year
+            dt = today.day
+            mt = today.month
+            current_date = today.strftime("%Y%m%d")
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
 
+            # # GENERATE ORDER NUMBER
+            # yr = int(datetime.date.today().strftime('%Y'))
+            # dt = int(datetime.date.today().strftime('%d'))
+            # mt = int(datetime.date.today().strftime('%m'))
+            # d = datetime.date(yr, dt, mt)
+            # current_date = d.strftime("%Y%m%d")
+            # order_number = current_date + str(data.id)
+            # data.order_number = order_number
+            # data.save()
+
         context = {
+
+            'order': data,
+
             'total': total,
             'quantity': quantity,
             'cart_items': cart_items,

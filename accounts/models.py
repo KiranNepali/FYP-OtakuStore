@@ -54,7 +54,6 @@ class Account(AbstractBaseUser):
     email = models.EmailField(max_length=254, unique=True)
     phone_number = models.CharField(max_length=40)
 
-    # required
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
@@ -63,9 +62,13 @@ class Account(AbstractBaseUser):
     is_superadmin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
+    # addtitional fiels required for creating new account
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
     objects = MyAccountManager()
+
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
 
     def __str__(self):
         return self.email

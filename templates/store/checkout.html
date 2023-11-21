@@ -4,10 +4,11 @@
 
 <section class="cart section-content padding-y">
     <div class="container px-5">
-      <!-- ============================ COMPONENT 1 ================================= -->
       <div class="row">
         <aside class="col-lg-5">
           <div class="card px-3">
+
+            <!--checkout form-->
             <form action="{% url 'place_order' %}" method="POST">
               {% csrf_token %}
             <div class="card-body">
@@ -42,13 +43,10 @@
                                 <textarea name="order_note" rows="2" class="form-control"></textarea>
                             </div>
                       </div>
-                    
             </div>
             
-            
-            
-            </div> <!-- card.// -->
-              </aside> <!-- col.// -->
+            </div> 
+              </aside> 
               <aside class="col-lg-6">
                 <div class="card">
                   <div class="card-body">
@@ -79,14 +77,14 @@
                               </figure>
                             </td>
                             <td>
-                              <!-- col.// -->
+                          
                               <label for="">{{ cart_item.quantity }}</label>
                             </td>
                             <td>
                               <div class="price-wrap">
                                 <var class="price d-block">Rs.{{ cart_item.sub_total }}</var>
                                 <small class="text-muted">{{ cart_item.product.price }}</small>
-                              </div> <!-- price-wrap .// -->
+                              </div> 
                             </td>
                             
                           </tr>
@@ -101,9 +99,11 @@
                     </div>
             </div>
             </form>
+            <!--form ends-->
+            
           </div>
         </aside>
       </div>    
-    </div> <!-- container .// -->
+    </div> 
 </section>
 {% endblock %}
