@@ -93,6 +93,16 @@ AUTH_USER_MODEL = 'accounts.Account'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',  # Specify the name of your PostgreSQL database here
+        'USER': 'postgres',
+        'PASSWORD': '3EBBbbab-cCBga5fCdb1-2*5*346cB*f',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': 12242,
+    }
+}
 
 
 # Password validation
@@ -137,11 +147,11 @@ STATICFILES_DIRS = [
     'otakustore/static',
 ]
 
-# deploy 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
-MEDIA_URLS ='/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# # deploy 
+# STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# MEDIA_URLS ='/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # for media files configuration
 MEDIA_URL = '/media/'
