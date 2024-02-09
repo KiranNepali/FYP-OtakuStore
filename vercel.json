@@ -1,10 +1,10 @@
 {
-  "builds": [
-    {
-      "src": "otakustore/wsgi.py",
-      "use": "@vercel/python"
-    }
-  ],
+  // "builds": [
+  //   {
+  //     "src": "otakustore/wsgi.py",
+  //     "use": "@vercel/python"
+  //   }
+  // ],
   "routes": [
     {
       "src": "/(.*)",
